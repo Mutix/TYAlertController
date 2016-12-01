@@ -11,6 +11,7 @@
 typedef NS_ENUM(NSUInteger, TYAlertActionStyle) {
     TYAlertActionStyleDefault,
     TYAlertActionStyleCancel,
+    TYAlertActionStyleConstructive,
     TYAlertActionStyleDestructive,
 };
 
@@ -27,7 +28,7 @@ typedef NS_ENUM(NSUInteger, TYAlertActionStyle) {
 
 @interface TYAlertView : UIView
 
-@property (nonatomic, weak, readonly) UILabel *titleLable;
+@property (nonatomic, weak, readonly) UILabel *titleLabel;
 @property (nonatomic, weak, readonly) UILabel *messageLabel;
 
 // alertView textfield array
@@ -52,6 +53,7 @@ typedef NS_ENUM(NSUInteger, TYAlertActionStyle) {
 @property (nonatomic, strong) UIFont *buttonFont;
 @property (nonatomic, strong) UIColor *buttonDefaultBgColor;
 @property (nonatomic, strong) UIColor *buttonCancelBgColor;
+@property (nonatomic, strong) UIColor *buttonConstructiveBgColor;
 @property (nonatomic, strong) UIColor *buttonDestructiveBgColor;
 
 // textField custom

@@ -50,7 +50,7 @@
 
 // text content View
 @property (nonatomic, weak) UIView *textContentView;
-@property (nonatomic, weak) UILabel *titleLable;
+@property (nonatomic, weak) UILabel *titleLabel;
 @property (nonatomic, weak) UILabel *messageLabel;
 
 @property (nonatomic, weak) UIView *textFieldContentView;
@@ -104,7 +104,7 @@
 {
     if (self = [super init]) {
         
-        _titleLable.text = title;
+        _titleLabel.text = title;
         _messageLabel.text = message;
         
     }
@@ -136,6 +136,7 @@
     _buttonDefaultBgColor = [UIColor colorWithRed:52/255.0 green:152/255.0 blue:219/255.0 alpha:1];
     _buttonCancelBgColor = [UIColor colorWithRed:127/255.0 green:140/255.0 blue:141/255.0 alpha:1];
     _buttonDestructiveBgColor = [UIColor colorWithRed:231/255.0 green:76/255.0 blue:60/255.0 alpha:1];
+    _buttonConstructiveBgColor = [UIColor colorWithRed:78/255.0 green:173/255.0 blue:74/255.0 alpha:1];
     
     _textFieldHeight = kTextFieldHeight;
     _textFieldEdge = kTextFieldEdge;
@@ -157,9 +158,10 @@
             return _buttonDefaultBgColor;
         case TYAlertActionStyleCancel:
             return _buttonCancelBgColor;
+        case TYAlertActionStyleConstructive:
+            return _buttonConstructiveBgColor;
         case TYAlertActionStyleDestructive:
             return _buttonDestructiveBgColor;
-            
         default:
             return nil;
     }
@@ -190,7 +192,7 @@
     titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
     titleLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0];
     [_textContentView addSubview:titleLabel];
-    _titleLable = titleLabel;
+    _titleLabel = titleLabel;
     
     UILabel *messageLabel = [[UILabel alloc]init];
     messageLabel.numberOfLines = 0;
@@ -304,17 +306,17 @@
 
 - (void)layoutTextLabels
 {
-    if (!_titleLable.translatesAutoresizingMaskIntoConstraints && !_messageLabel.translatesAutoresizingMaskIntoConstraints) {
+    if (!_titleLabel.translatesAutoresizingMaskIntoConstraints && !_messageLabel.translatesAutoresizingMaskIntoConstraints) {
         // layout done
         return;
     }
     // title
-    _titleLable.translatesAutoresizingMaskIntoConstraints = NO;
-    [_textContentView addConstraintWithView:_titleLable topView:_textContentView leftView:_textContentView bottomView:nil rightView:_textContentView edgeInset:UIEdgeInsetsZero];
+    _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [_textContentView addConstraintWithView:_titleLabel topView:_textContentView leftView:_textContentView bottomView:nil rightView:_textContentView edgeInset:UIEdgeInsetsZero];
     
     // message
     _messageLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [_textContentView addConstraintWithTopView:_titleLable toBottomView:_messageLabel constant:_textLabelSpace];
+    [_textContentView addConstraintWithTopView:_titleLabel toBottomView:_messageLabel constant:_textLabelSpace];
     [_textContentView addConstraintWithView:_messageLabel topView:nil leftView:_textContentView bottomView:_textContentView rightView:_textContentView edgeInset:UIEdgeInsetsZero];
 }
 
@@ -393,10 +395,5 @@
         action.handler(action);
     }
 }
-
-//- (void)dealloc
-//{
-//    NSLog(@"%@ dealloc",NSStringFromClass([self class]));
-//}
 
 @end
