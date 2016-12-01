@@ -214,6 +214,7 @@
 - (void)addAction:(TYAlertAction *)action
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    button.tintColor = [UIColor whiteColor];
     button.clipsToBounds = YES;
     button.layer.cornerRadius = _buttonCornerRadius;
     [button setTitle:action.title forState:UIControlStateNormal];
