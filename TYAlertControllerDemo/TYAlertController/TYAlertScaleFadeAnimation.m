@@ -36,18 +36,11 @@
     UIView *containerView = [transitionContext containerView];
     [containerView addSubview:alertController.view];
     
-    [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:13 options:UIViewAnimationOptionCurveLinear animations:^{
         alertController.backgroundView.alpha = 1.0;
-        switch (alertController.preferredStyle) {
-            case TYAlertControllerStyleAlert:
-                alertController.alertView.alpha = 1.0;
-                alertController.alertView.transform = CGAffineTransformIdentity;
-                break;
-            case TYAlertControllerStyleActionSheet:
-                alertController.alertView.transform = CGAffineTransformIdentity;
-                break;
-            default:
-                break;
+        alertController.alertView.transform = CGAffineTransformIdentity;
+        if (alertController.preferredStyle == TYAlertControllerStyleAlert) {
+            alertController.alertView.alpha = 1.0;
         }
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:YES];
@@ -75,5 +68,6 @@
         [transitionContext completeTransition:YES];
     }];
 }
+
 
 @end
